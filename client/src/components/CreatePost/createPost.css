@@ -1,0 +1,11 @@
+.heading {
+  font-size: 2rem;
+  text-align: center;
+  padding: 0 16px;
+  margin-top: 16px;
+}
+
+.create-post {
+  max-width: 700px;
+  margin: 0 auto;
+}
