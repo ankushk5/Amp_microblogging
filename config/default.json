@@ -1,4 +1,3 @@
 {
-  "mongoURI": "mongodb://localhost:27017/intern_task_amp",
-  "jwtSecret": "mylocalJwtKey"
+  "mongoURI": "mongodb://localhost:27017/intern_task_amp"
 }
