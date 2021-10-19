@@ -45,6 +45,8 @@ const AllPost = () => {
     if (searchText === "") {
       return;
     }
+    setOffset(0);
+
     try {
       const filteredPost = await axios.get(
         `/api/post/filteredPost/${searchText}/0`
