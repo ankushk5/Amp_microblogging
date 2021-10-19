@@ -6,12 +6,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import CreatePost from "./components/CreatePost/CreatePost";
 import AllPost from "./components/AllPost/AllPost";
 import EditPost from "./components/EditPost/EditPost";
-// import Navbar from "./components/container-components/Navbar";
+import Navbar from "./components/container-components/Navbar";
 
 function App() {
   return (
     <BrowserRouter>
-      {/* <Navbar /> */}
+      <Navbar />
       <div className="App">
         <Switch>
           <Route exact path="/" component={AllPost} />

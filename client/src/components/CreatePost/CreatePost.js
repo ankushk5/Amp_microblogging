@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import "./createPost.css";
 import axios from "axios";
 import FormComponent from "../container-components/FormComponent";
+import { withRouter, useHistory } from "react-router";
 
 const CreatePost = () => {
   const [postData, setPostData] = useState({
     title: "",
     content: "",
   });
+
+  const history = useHistory();
 
   // Changing component state for controlling form input
   const onChange = (e) => {
@@ -26,6 +29,7 @@ const CreatePost = () => {
 
       if (response) {
         // success toast and redirect to all posts
+        history.push("/");
       } else {
         // TODO - show a different toast
       }
@@ -50,4 +54,4 @@ const CreatePost = () => {
   );
 };
 
-export default CreatePost;
+export default withRouter(CreatePost);

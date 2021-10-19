@@ -57,6 +57,7 @@ router.delete("/:id", async (req, res) => {
 
   try {
     const data = await Posts.findByIdAndDelete(postid);
+
     res.send(data);
   } catch (err) {
     console.error(err.message);
@@ -67,17 +68,25 @@ router.delete("/:id", async (req, res) => {
 /**
  * PUT method
  *
- * updating the list title data using list id
+ * updating the post using post id
  */
 router.put("/", async (req, res) => {
-  const { title, content, _id } = req.body;
+  const { title, content, id } = req.body;
+
+  if (!id) {
+    res.status(500).send("Please Provide a post id");
+  }
+
+  console.log(req.body);
 
   try {
     const data = await Posts.findByIdAndUpdate(
-      _id,
+      { _id: id },
       { $set: { title, content } },
       { new: true }
     );
+
+    console.log(data);
 
     res.send(data);
   } catch (err) {

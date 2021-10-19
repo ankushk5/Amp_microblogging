@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../CreatePost/createPost.css";
 import axios from "axios";
 import FormComponent from "../container-components/FormComponent";
+import { useHistory, withRouter } from "react-router";
 
 const EditPost = (props) => {
   const [postFormData, setPostFormData] = useState({
@@ -9,12 +10,13 @@ const EditPost = (props) => {
     content: "",
   });
   //   console.log(props);
-
+  const history = useHistory();
   const postData = props.location.state && props.location.state.postData;
 
   // for setting intial state for showing content in input
   useEffect(() => {
     setPostFormData({
+      id: postData ? postData.id : "",
       title: postData ? postData.title : "",
       content: postData ? postData.content : "",
     });
@@ -37,6 +39,7 @@ const EditPost = (props) => {
 
       if (response) {
         // success toast and redirect to all posts
+        history.push("/");
       } else {
         // TODO - show a different toast
       }
@@ -61,4 +64,4 @@ const EditPost = (props) => {
   );
 };
 
-export default EditPost;
+export default withRouter(EditPost);
