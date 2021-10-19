@@ -8,31 +8,30 @@ import AlertComponent from "../container-components/AlertComponent";
 const PostListComponent = ({ id, title, content, postList, setPostList }) => {
   const history = useHistory();
 
-  const [successDelete, setSuccessDelete] = useState(false);
   const deletePost = async () => {
     try {
       const response = await axios.delete(`/api/post/${id}`);
 
       if (response) {
         // success toast and filter state
-        setSuccessDelete(true);
 
         const prevList = postList.filter((item) => {
           return item._id != id;
         });
+
+        //success Alert
+        AlertComponent.success("Post Deleted Successfully");
 
         // console.log(prevList);
         setPostList(prevList);
       }
     } catch (error) {
       // Todo - error Toast
+      AlertComponent.error("Some Error Occured");
     }
   };
   return (
     <div className="container">
-      {successDelete && (
-        <AlertComponent variant="primary">Post Deleted..</AlertComponent>
-      )}
       <Card style={{ width: "100%", marginBottom: "16px" }}>
         <Card.Body>
           <Card.Title>Title : {title}</Card.Title>

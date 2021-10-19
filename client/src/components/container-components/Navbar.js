@@ -24,7 +24,7 @@ const NavbarComp = () => {
                 onClick={() => {
                   history.push("/create");
                 }}>
-                Create
+                Create Post
               </Button>
             </Nav>
           </Container>

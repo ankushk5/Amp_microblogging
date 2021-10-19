@@ -1,0 +1,12 @@
+.heading {
+  font-size: 2rem;
+  text-align: center;
+  padding: 0 16px;
+  margin-top: 16px;
+}
+.search-component {
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 24px;
+}

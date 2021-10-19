@@ -7,11 +7,39 @@ const Posts = require("../models/Post");
  * Getting all the list
  *
  */
-router.get("/", async (req, res) => {
+router.get("/:offset", async (req, res) => {
+  const offset = req.params.offset;
   try {
-    const allPosts = await Posts.find({});
+    const allPosts = await Posts.find({})
+      .skip(parseInt(offset))
+      .limit(parseInt(5));
+
     res.send(allPosts);
   } catch (error) {
+    res.status(500).send("Server error");
+  }
+});
+
+/**
+ * GET METHOD
+ * Filtering posts based on keyword
+ *
+ *
+ */
+router.get("/filteredPost/:keyword/:offset", async (req, res) => {
+  const keyword = req.params.keyword;
+  const offset = req.params.offset;
+
+  try {
+    const filteredData = await Posts.find({
+      $text: { $search: keyword },
+    })
+      .limit(parseInt(5))
+      .skip(parseInt(offset));
+
+    res.send(filteredData);
+  } catch (error) {
+    console.log(error);
     res.status(500).send("Server error");
   }
 });
@@ -77,7 +105,7 @@ router.put("/", async (req, res) => {
     res.status(500).send("Please Provide a post id");
   }
 
-  console.log(req.body);
+  // console.log(req.body);
 
   try {
     const data = await Posts.findByIdAndUpdate(
@@ -86,7 +114,7 @@ router.put("/", async (req, res) => {
       { new: true }
     );
 
-    console.log(data);
+    // console.log(data);
 
     res.send(data);
   } catch (err) {

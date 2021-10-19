@@ -3,6 +3,7 @@ import "../CreatePost/createPost.css";
 import axios from "axios";
 import FormComponent from "../container-components/FormComponent";
 import { useHistory, withRouter } from "react-router";
+import AlertComponent from "../container-components/AlertComponent";
 
 const EditPost = (props) => {
   const [postFormData, setPostFormData] = useState({
@@ -42,9 +43,11 @@ const EditPost = (props) => {
         history.push("/");
       } else {
         // TODO - show a different toast
+        AlertComponent.error("Some Error Occured");
       }
     } catch (error) {
       // TODO -  Show a Toast
+      AlertComponent.error("Some Error Occured");
     }
   };
 

@@ -3,6 +3,7 @@ import "./createPost.css";
 import axios from "axios";
 import FormComponent from "../container-components/FormComponent";
 import { withRouter, useHistory } from "react-router";
+import AlertComponent from "../container-components/AlertComponent";
 
 const CreatePost = () => {
   const [postData, setPostData] = useState({
@@ -32,9 +33,11 @@ const CreatePost = () => {
         history.push("/");
       } else {
         // TODO - show a different toast
+        AlertComponent.error("Some Error Occured");
       }
     } catch (error) {
       // TODO -  Show a Toast
+      AlertComponent.error("Some Error Occured");
     }
   };
 
