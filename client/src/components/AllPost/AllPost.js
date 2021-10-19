@@ -66,6 +66,7 @@ const AllPost = () => {
   const onClear = (e) => {
     e.preventDefault();
     setSearchText("");
+    setOffset(0);
     requestData();
   };
 
